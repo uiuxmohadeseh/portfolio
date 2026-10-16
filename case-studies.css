@@ -1,0 +1,46 @@
+:root{--case-purple:#6347ea;--case-lilac:#f7efff;--case-muted:#615d6c}
+.case-main{padding:35px 0 0}.case-wrap{width:min(1324px,92%);margin-inline:auto}
+.case-intro{position:relative;isolation:isolate;overflow:hidden;min-height:369px;padding:36px 36px 32px;border-radius:34px;background:linear-gradient(110deg,#f9edfc 0%,#f6eaf9 58%,#faf3fb 100%)}
+.case-hero-decoration{position:absolute;z-index:0;top:0;right:0;max-width:100%;height:auto;pointer-events:none;user-select:none}.case-intro>*:not(.case-hero-decoration){position:relative;z-index:1}
+
+
+.case-eyebrow{display:inline-flex;align-items:center;gap:9px;padding:6px 15px;border-radius:999px;background:#fff;color:#484351;font:700 12px/1.3 "Space Grotesk",sans-serif;letter-spacing:.02em}.case-eyebrow i{width:10px;height:10px;border-radius:50%;background:#fcab28}
+.case-intro h1{max-width:1050px;margin:24px 0 18px;color:#1b1b1c;font-size:clamp(38px,4vw,54px);line-height:1.12;letter-spacing:-.045em}.case-intro h1 em{color:#4a26d2;font-style:normal}.case-intro p{max-width:900px;margin:0;color:#615d6c;font-size:16px;line-height:1.65}
+.case-topics{display:flex;flex-wrap:wrap;gap:9px;margin-top:25px}.case-topics a{display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:#fff;color:#3f3b47;font:700 11px/1.25 "Space Grotesk",sans-serif}.case-topics svg{width:14px;height:14px;fill:none;stroke:#6347ea;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.case-topics a:nth-child(2) svg{stroke:#3185dd}.case-topics a:nth-child(3) svg{stroke:#e89b3b}
+.case-list{display:grid;gap:26px;margin-top:56px}.study-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:stretch;min-height:0;padding:36px 36px 36px 36px;border-radius:34px;background:#fff;box-shadow:0 3px 4px rgba(39,27,53,.12)}.study-content{display:flex;min-width:0;flex-direction:column;align-items:flex-start}.study-tags{display:flex;flex-wrap:wrap;gap:5px;margin:3px 0 22px}.tag{padding:5px 11px;border-radius:999px;font:700 11px/1.2 "Space Grotesk",sans-serif;white-space:nowrap}.tag-purple{color:#6347ea;background:#efe9ff}.tag-blue{color:#586171;background:#e7f1ff}.tag-orange{color:#52473b;background:#fff0df}.study-content h2{margin:0 0 17px;color:#211c27;font-size:29px;line-height:1.22;letter-spacing:-.035em}.study-content p{margin:0;color:#625e6c;font-size:15px;line-height:1.65}.study-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:100%;margin-top:21px;padding:17px 16px;border-radius:16px;background:#f8efff}.study-stats div{display:flex;min-width:0;flex-direction:column;gap:5px}.study-stats strong{color:#4a26d2;font-size:18px;line-height:1.2;white-space:nowrap}.study-stats small{color:#686272;font:600 10px/1.25 "Space Grotesk",sans-serif;letter-spacing:.02em}.study-actions{display:flex;flex-wrap:wrap;align-items:center;gap:15px;margin-top:22px}.study-button{display:inline-flex;min-height:36px;align-items:center;justify-content:center;gap:8px;padding:9px 19px;border-radius:999px;background:#6347ea;color:#fff;font:700 12px/1.2 "Space Grotesk",sans-serif;white-space:nowrap;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}.study-button:hover,.study-button:focus-visible{transform:translateY(-2px);background:#4a26d2;box-shadow:0 7px 16px rgba(74,38,210,.2)}.study-button:focus-visible{outline:3px solid #b4a5ff;outline-offset:3px}.study-button span{font-size:17px;line-height:12px}.protected-note{color:#625e6c;font:600 11px/1.3 "Space Grotesk",sans-serif}
+.study-art{position:relative;display:grid;min-width:0;min-height:380px;place-items:center;overflow:hidden;border-radius:17px}.study-art.workflow-art{width:100%;min-height:0;aspect-ratio:606/370;align-self:center;background:#fcf1fd}.study-art.workflow-art .workflow-mascot{position:absolute;z-index:1;top:37%;left:50%;bottom:auto;width:36%;height:auto;object-fit:contain;transform:translateX(-50%)}.workflow-widget{position:absolute;z-index:2;height:auto;object-fit:contain;pointer-events:none}.workflow-widget-one{top:5%;left:18%;width:36%}.workflow-widget-two{top:20%;left:32%;width:33%}.workflow-mascot{position:absolute;left:50%;bottom:11%;width:174px;height:138px;object-fit:contain;transform:translateX(-50%)}.workflow-note{position:absolute;z-index:1;display:flex;align-items:center;gap:10px;padding:12px 15px;border-radius:16px;background:#fff;box-shadow:0 8px 18px rgba(44,26,67,.12);font-family:"Space Grotesk",sans-serif}.workflow-note b,.workflow-note small{display:block}.workflow-note b{color:#413b4b;font-size:11px;line-height:1.3}.workflow-note small{margin-top:4px;color:#757080;font-size:9px;line-height:1.3}.workflow-note-one{top:15%;left:18%;transform:rotate(-9deg)}.workflow-note-two{top:28%;right:19%;transform:rotate(-9deg)}.note-icon{display:grid;width:23px;height:23px;flex:none;place-items:center;border-radius:50%;font-size:13px}.mint-icon{background:#e3fbf2;color:#18ad7b}.violet-icon{background:#eee9ff;color:#7656df}.study-lock{position:absolute;top:14px;right:14px;z-index:2;display:grid;width:58px;height:58px;place-items:center;border:1px solid #ffe5d6;border-radius:50%;background:#fff;box-shadow:0 3px 5px rgba(49,33,52,.13);color:#f5b71c}.study-lock svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.study-reverse .study-art{min-height:362px}.ai-art{display:block;padding:22px 18px;background:#e4f1ff}.ai-visual{position:absolute;left:50%;bottom:0;width:568px;max-width:100%;height:auto;transform:translateX(-50%)}.pattern-art{background:#fff5e2}.pattern-art img{display:block;width:72%;height:78%;object-fit:contain}
+
+@media(max-width:1100px){.case-intro{min-height:0;padding:32px}.study-card{gap:25px;padding:28px;min-height:410px}.study-art{min-height:330px}.study-reverse .study-art{min-height:330px}.study-content h2{font-size:25px}.study-stats{gap:7px;padding:14px 11px}.study-stats strong{font-size:16px}}
+@media(max-width:900px){.case-main{padding-top:12px}.case-intro{padding:28px;min-height:0}.case-intro h1{font-size:clamp(36px,6vw,48px)}.case-list{margin-top:32px;gap:22px}.study-card{grid-template-columns:1fr;gap:22px;min-height:0;padding:24px}.study-reverse .study-art{order:0}.study-reverse .study-content{order:1}.study-art{min-height:340px}.study-reverse .study-art{min-height:340px}.study-content h2{font-size:26px}.study-content p{font-size:14px}.study-stats{margin-top:17px}}
+@media(max-width:560px){.case-wrap{width:calc(100% - 32px)}.case-intro{padding:24px 20px;border-radius:26px}.case-eyebrow{font-size:11px}.case-intro h1{margin:19px 0 13px;font-size:32px;line-height:1.16}.case-intro p{font-size:14px;line-height:1.6}.case-topics{gap:7px;margin-top:19px}.case-topics a{font-size:10px;padding:6px 9px}.case-list{gap:18px;margin-top:23px}.study-card{gap:18px;padding:19px;border-radius:26px}.study-tags{gap:5px;margin:0 0 15px}.tag{padding:5px 9px;font-size:10px}.study-content h2{margin-bottom:12px;font-size:23px}.study-content p{font-size:13px;line-height:1.6}.study-stats{gap:4px;margin-top:15px;padding:13px 9px;border-radius:13px}.study-stats strong{font-size:14px}.study-stats small{font-size:9px}.study-actions{gap:11px;margin-top:16px}.study-button{padding:10px 14px;font-size:11px}.protected-note{font-size:10px}.study-art{min-height:250px;border-radius:15px}.workflow-mascot{width:142px;height:112px;bottom:9%}.workflow-note{gap:7px;padding:9px 10px;border-radius:12px}.workflow-note b{font-size:9px}.workflow-note small{font-size:8px}.workflow-note-one{left:5%;top:17%}.workflow-note-two{right:5%;top:36%}.note-icon{width:20px;height:20px;font-size:11px}.study-lock{top:12px;right:12px;width:44px;height:44px}.study-lock svg{width:18px;height:18px}.ai-art{min-height:255px}.study-reverse .study-art{min-height:255px}.pattern-art img{width:82%;height:82%}}
+@media(max-width:380px){.case-intro h1{font-size:29px}.study-stats strong{font-size:12px}.study-actions{align-items:flex-start;flex-direction:column}}
+
+
+
+
+@media (max-width: 900px) {
+  .case-hero-decoration {
+    display: none;
+  }
+
+  .study-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .study-card > .study-art {
+    order: 0;
+  }
+
+  .study-card > .study-content {
+    order: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .study-card > .study-art {
+    min-height: 0;
+    aspect-ratio: 606 / 370;
+  }
+}

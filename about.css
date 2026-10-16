@@ -1,0 +1,69 @@
+.about-main{padding-top:35px}
+.about-wrap{width:min(1324px,92%);margin-inline:auto}
+.about-hero{display:grid;grid-template-columns:1.42fr 1fr;gap:24px;align-items:stretch}
+.about-panel{position:relative;min-width:0;overflow:hidden;border-radius:34px}
+.about-intro{min-height:442px;padding:36px;background:linear-gradient(135deg,#f2eaff,#f8efff 60%,#fff0e6);display:flex;flex-direction:column;justify-content:center}
+.about-eyebrow{position:relative;z-index:1;display:inline-flex;align-items:center;gap:9px;align-self:flex-start;padding:7px 14px;border-radius:99px;background:#fff;color:#493d58;font:700 11px/1.2 'Space Grotesk',sans-serif;letter-spacing:.04em}
+.about-eyebrow i{width:9px;height:9px;border-radius:50%;background:#ffab2d}
+.about-intro h1{position:relative;z-index:1;margin:22px 0 18px;font:800 clamp(36px,3.45vw,46px)/1.18 'Plus Jakarta Sans',sans-serif;letter-spacing:-.045em}
+.about-intro h1 em{color:#4a26d2;font-style:normal}
+.about-intro>p{position:relative;z-index:1;margin:0;color:#5e5a6b;font-size:15px;line-height:1.75}
+.about-actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.about-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 18px;font-size:13px;white-space:nowrap}
+.about-portrait{min-height:442px;border:8px solid #fff;background:linear-gradient(135deg,#fff0e6,#fff4ee 55%,#f0e8ff);box-shadow:0 3px 7px #28183612}
+.about-portrait>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.experience-badge{position:absolute;top:72px;right:14px;display:flex;align-items:center;gap:9px;padding:10px 14px;background:#fff;border-radius:99px;box-shadow:0 6px 18px #301c391a;color:#4a26d2}
+.experience-badge strong{font:800 22px/1 'Space Grotesk',sans-serif}
+.experience-badge span{color:#50495c;font:600 10px/1.35 'Space Grotesk',sans-serif}
+.portrait-caption{position:absolute;left:16px;right:16px;bottom:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;border-radius:16px;background:#fffffff0;box-shadow:0 6px 22px #28183612}
+.portrait-caption strong{font:700 12px/1.3 'Space Grotesk',sans-serif}
+.portrait-caption span{color:#6b6577;font-size:11px}
+.about-section{padding-top:64px}
+.about-section-heading{max-width:760px;margin-bottom:26px}
+.about-section-heading>span,.about-tools>div>span{color:#4a26d2;font:700 11px/1.3 'Space Grotesk',sans-serif;letter-spacing:.12em}
+.about-section-heading h2{margin:9px 0;font:800 28px/1.25 'Plus Jakarta Sans',sans-serif;letter-spacing:-.04em}
+.about-section-heading>p{margin:0;color:#696475;font-size:14px;line-height:1.7}
+.principles-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.about-principle{position:relative;min-width:0;overflow:hidden;padding:24px 20px;border-radius:30px;display:flex;flex-direction:column}
+.principle-lilac{background:#f4edff}.principle-blue{background:#e6f2ff}.principle-peach{background:#fff0e6}.principle-mint{background:#e7f5ef}
+.principle-label{align-self:flex-start;padding:7px 14px;border-radius:99px;background:#fff;color:#4a26d2;font:700 11px/1.2 'Space Grotesk',sans-serif;letter-spacing:.02em}
+.principle-blue .principle-label{color:#0061d8}.principle-peach .principle-label{color:#a26300}.principle-mint .principle-label{color:#078650}
+.principle-visual{display:grid;place-items:center;height:186px;margin:12px 0 16px}
+.about-principle img{display:block;width:min(100%,210px);height:186px;object-fit:contain}
+.about-principle h3{margin:0 0 8px;font:700 20px/1.4 'Plus Jakarta Sans',sans-serif;letter-spacing:-.035em}
+.about-principle p{margin:0;color:#5e5a6b;font-size:13px;line-height:1.6}
+.career-list{display:grid;gap:14px}
+.career-item{padding:22px 24px;border:1px solid #f0eaf3;border-radius:24px;background:#fff;box-shadow:0 5px 20px #33234408}
+.career-summary{display:grid;grid-template-columns:56px minmax(0,1fr) auto 16px;align-items:center;gap:16px;cursor:pointer;list-style:none;border-radius:12px}
+.career-summary::-webkit-details-marker{display:none}
+.career-summary:focus-visible{outline:3px solid #9c85ff;outline-offset:8px}
+.career-brand{display:grid;place-items:center;width:56px;height:56px;aspect-ratio:1;padding:9px;border-radius:16px;background:#faf8fc}
+.career-brand img{display:block;width:100%;height:100%;max-width:100%;max-height:none;object-fit:contain}
+.career-heading{display:flex;flex-direction:column;gap:5px;min-width:0}
+.career-role{font:700 18px/1.35 'Plus Jakarta Sans',sans-serif;letter-spacing:-.025em}
+.career-company{color:#4a26d2;font:600 13px/1.4 'Space Grotesk',sans-serif}
+.career-summary-meta{display:flex;flex-direction:column;align-items:flex-end;gap:7px}
+.career-date{padding:7px 11px;border-radius:99px;background:#f5f0ff;color:#61587b;font:600 11px/1.2 'Space Grotesk',sans-serif;white-space:nowrap}
+.career-meta-line{color:#656071;font:600 11px/1.4 'Space Grotesk',sans-serif}
+.career-chevron{width:9px;height:9px;justify-self:center;border-right:2px solid #514d60;border-bottom:2px solid #514d60;transform:rotate(45deg);transition:transform .2s ease}
+.career-item[open] .career-chevron{transform:rotate(225deg)}
+.career-summary:hover .career-role{color:#4a26d2}
+.career-details{padding:16px 32px 0 72px}
+.career-meta{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 12px}
+.career-meta span{padding:5px 9px;border-radius:99px;background:#fff2e8;color:#775c48;font:600 11px/1.2 'Space Grotesk',sans-serif}
+.career-details>p,.career-details li{color:#656071;font-size:13px;line-height:1.7}
+.career-details>p{margin:0 0 8px}.career-details ul{margin:8px 0 0;padding-left:18px}.career-details li+li{margin-top:7px}
+.skills-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.about-skill-card{min-height:218px;padding:24px;border-radius:22px}
+.skill-purple{background:#f1ebff}.skill-peach{background:#fff0e6}.skill-blue{background:#e8f3ff}
+.skill-index{color:#716b7b;font:700 10px/1.2 'Space Grotesk',sans-serif;letter-spacing:.1em}
+.about-skill-card h3{margin:13px 0 17px;font:700 21px/1.3 'Plus Jakarta Sans',sans-serif;letter-spacing:-.03em}
+.skill-chips{display:flex;flex-wrap:wrap;gap:7px}.skill-chips span{padding:7px 10px;border:1px solid #ffffffb5;border-radius:99px;background:#ffffffa8;color:#585365;font:600 10px/1.2 'Space Grotesk',sans-serif}
+.about-tools{display:grid;grid-template-columns:.85fr 1.15fr;align-items:center;gap:24px;margin-top:16px;padding:24px 28px;border-radius:22px;background:#fff;box-shadow:0 5px 20px #33234408}
+.about-tools h3{margin:7px 0 0;font:700 18px/1.3 'Plus Jakarta Sans',sans-serif;letter-spacing:-.025em}
+.tool-list{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:10px}.tool-list>span{display:flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid #f0ebf2;border-radius:12px;color:#575263;font:600 11px/1.2 'Space Grotesk',sans-serif;white-space:nowrap}.tool-list img{width:23px;height:23px;object-fit:contain}
+@media(max-width:1050px){.about-intro{padding:28px;min-height:420px}.about-portrait{min-height:420px}.about-intro h1{font-size:36px}.about-intro>p{font-size:14px}.principles-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.about-principle{padding:24px}.principle-visual{height:192px}.about-principle img{height:192px;width:min(100%,230px)}}
+@media(max-width:760px){.about-main{padding-top:12px}.about-wrap{width:calc(100% - 32px)}.about-hero{grid-template-columns:1fr;gap:14px}.about-panel{border-radius:26px}.about-intro{min-height:0;padding:24px}.about-intro h1{font-size:32px;line-height:1.18;margin:18px 0 14px}.about-intro>p{font-size:14px;line-height:1.65}.about-actions{gap:10px;margin-top:20px}.about-actions a{font-size:12px;padding:11px 14px}.experience-badge{display:none}.about-portrait{min-height:0;height:360px}.portrait-caption{left:12px;right:12px;bottom:12px;padding:12px}.portrait-caption strong{font-size:11px}.portrait-caption span{font-size:10px}.about-section{padding-top:32px}.about-section-heading{margin-bottom:20px}.about-section-heading h2{font-size:20px}.about-section-heading>p{font-size:13px}.principles-grid{gap:14px}.about-principle{padding:20px 16px;border-radius:24px}.principle-label{font-size:10px;padding:7px 10px}.principle-visual{height:160px;margin:10px 0 14px}.about-principle img{height:160px;width:min(100%,190px)}.about-principle h3{font-size:18px;line-height:1.35}.about-principle p{font-size:12px;line-height:1.6}.career-item{padding:18px 16px;border-radius:20px}.career-summary{grid-template-columns:48px minmax(0,1fr) 14px;gap:12px}.career-brand{width:48px;height:48px;padding:8px;border-radius:13px;grid-row:1/span 2}.career-heading{grid-column:2;grid-row:1}.career-role{font-size:16px}.career-company{font-size:12px}.career-summary-meta{grid-column:2;grid-row:2;align-items:flex-start;gap:6px}.career-chevron{grid-column:3;grid-row:1/span 2}.career-date{font-size:10px}.career-meta-line{font-size:10px}.career-details{padding:16px 0 0}.career-details>p,.career-details li{font-size:13px}.skills-grid{grid-template-columns:1fr}.about-skill-card{min-height:0;padding:20px}.about-tools{grid-template-columns:1fr;padding:21px}.tool-list{justify-content:flex-start}}
+@media(max-width:480px){.about-intro{padding:24px 20px}.about-eyebrow{font-size:10px;padding:7px 11px}.about-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.about-actions a{min-width:0;padding-inline:8px;font-size:11px;white-space:normal;text-align:center}.about-portrait{height:330px}.principles-grid{gap:12px}.about-principle{padding:18px 14px;border-radius:22px}.principle-label{font-size:10px;padding:6px 9px}.principle-visual{height:140px;margin:10px 0 12px}.about-principle img{height:140px;width:100%}.about-principle h3{font-size:16px;line-height:1.4}.about-principle p{font-size:12px}.tool-list{gap:7px}.tool-list>span{font-size:10px;padding:7px 8px}.tool-list img{width:19px;height:19px}}
+@media(max-width:360px){.about-actions{grid-template-columns:1fr}.principles-grid{grid-template-columns:1fr}.about-principle img{width:200px;height:160px}.principle-visual{height:160px}.about-principle h3{font-size:18px}}
+@media(prefers-reduced-motion:reduce){.about-main *{scroll-behavior:auto}.career-chevron{transition:none}}

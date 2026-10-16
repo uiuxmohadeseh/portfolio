@@ -1,0 +1,9 @@
+@font-face{font-family:YekanBakh;src:url('assets/fonts/YekanBakh-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+.site-header nav .language-switch,.language-switch{display:inline-flex;align-items:center;justify-content:center;gap:4px;flex:none;min-width:46px;min-height:34px;padding:6px 10px;border:1px solid #e6dcf2;border-radius:999px;background:#fff;color:#6747ad;font:600 12px/1.5 YekanBakh,'Space Grotesk',sans-serif;letter-spacing:0}
+.site-header nav .language-switch{margin-inline-start:7px}.language-switch:hover{background:#f2edff;color:#4a26d2}.language-switch:focus-visible{outline:3px solid #9c85ff;outline-offset:3px}.language-mobile{display:none}
+@media(max-width:900px){.site-header .language-mobile{display:inline-flex;margin-inline-start:auto;margin-inline-end:10px;min-width:43px}.site-header .brand{flex-shrink:1;min-width:0}.site-header .brand strong{white-space:nowrap}}
+@media(min-width:901px) and (max-width:1150px){.site-header{gap:12px;padding-inline:2%}.site-header .brand small{display:none}.site-header .header-actions{gap:8px}.site-header .header-actions a{padding-inline:15px}.site-header nav a{padding-inline:12px}}
+
+/* The language control has the same placement in both languages. */
+.brand-language{display:flex;align-items:center;gap:10px;flex:0 1 auto;min-width:0}.brand-language .brand{flex:none}.brand-language .desktop-language{margin:0}
+@media(max-width:900px){.brand-language .desktop-language{display:none}.brand-language .brand{flex-shrink:1}.site-header .brand-language{max-width:calc(100% - 109px)}}

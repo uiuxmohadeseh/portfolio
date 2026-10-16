@@ -1,0 +1,55 @@
+@font-face{font-family:YekanBakh;src:url('../assets/fonts/YekanBakh-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:YekanBakh;src:url('../assets/fonts/YekanBakh-SemiBold.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:YekanBakh;src:url('../assets/fonts/YekanBakh-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:YekanBakh;src:url('../assets/fonts/YekanBakh-ExtraBold.woff2') format('woff2');font-weight:800;font-style:normal;font-display:swap}
+html[lang=fa] body,html[lang=fa] body *{font-family:YekanBakh,sans-serif!important;letter-spacing:0!important}
+html[lang=fa]{direction:rtl}body{text-align:start}p{line-height:1.95!important}bdi{unicode-bidi:isolate}
+h1,h2,h3,h4{line-height:1.55!important}.hero h1{line-height:1.55!important;font-size:42px}.hero h1 em{white-space:nowrap}.hero p{line-height:2!important}.brand small{border-left:0;border-right:1px solid #ddd5e5;padding-left:0;padding-right:12px}
+.hero h1 em:after{z-index:0;opacity:.45;pointer-events:none}.hero h1 em{isolation:isolate}.hero h1 em:after{z-index:-1}
+.squiggle{right:auto;left:-48px;transform:scaleX(-1)}.projects-card .project-stack{right:auto;left:20px;transform:scaleX(-1) rotate(-7deg)}.project-stack img{transform:scaleX(-1)}
+.case-thinking{direction:rtl}.case-thinking small{line-height:1.8}.case-thinking-steps>li{align-items:flex-start}.case-thinking-steps strong{line-height:1.7}
+.about-intro h1{font-size:36px}.about-actions{flex-wrap:wrap}.career-details{padding:16px 72px 0 32px}.career-details ul{padding-right:18px;padding-left:0}.career-summary-meta{align-items:flex-end}
+.cta-kicker{white-space:normal}.cta .cta-copy h2{font-size:28px}.cta-actions a{letter-spacing:0}.cta.wrap::before,.cta.wrap::after{pointer-events:none}
+.channel-value:has(bdi){direction:ltr;text-align:right}.channel-value bdi{display:inline-block}.tool-list{direction:ltr}.tool-list>span{direction:ltr}
+.mobile-menu .mobile-subitem{padding-left:13px;padding-right:30px}.mobile-menu-work-toggle{text-align:right}
+.study-overview h1{font-size:34px;line-height:1.55!important}.quick-summary dd{font-size:15px;line-height:1.9}.quick-summary dt{font-size:12px;text-transform:none}.reading-start,.study-back{font-size:13px}
+.reader-sidebar{min-width:0}.reader-toc nav{border-left:0;border-right:1px solid #e8dff0;padding-left:0;padding-right:14px}.reader-toc a{font-size:13px;line-height:1.9}
+.reader-article{font-size:18px;line-height:2}.reading-section p{line-height:2!important}.reading-section>h2::before{letter-spacing:0}.reading-section ul>li{padding-right:32px;padding-left:16px;line-height:1.95}.reading-section ul>li::before{left:auto;right:15px}
+.decision-block,.reading-callout{border-left:0;border-right:3px solid #d4c3ee}.reading-callout{border-color:#7551d6;border-radius:16px 0 0 16px}.decision-block{font-size:16px;line-height:2}.decision-block>h4{text-transform:none;font-size:13px}
+.reading-table table{text-align:right;font-size:15px;line-height:1.9}.reading-table th{font-size:13px}.source-flow>li+li::after{left:auto;right:29px}.source-tree{direction:ltr;text-align:left}
+.pattern-stage-title{font-size:15px}.pattern-stage-children{margin-left:0;margin-right:12px;padding-left:0;padding-right:23px;border-left:0;border-right:1px solid #d9caeb}.pattern-stage-children>span::before{left:auto;right:-24px}
+.lock-study{margin-left:0;margin-right:auto}.password-form label{font-size:13px}.password-fields input{direction:ltr;text-align:center;font-family:YekanBakh,sans-serif}.password-fields button{font-size:13px}
+.catalog-card h2,.study-copy h2{font-size:24px}.catalog-card p,.study-copy>p{font-size:15px}.catalog-tags{flex-wrap:wrap}.catalog-tags span{line-height:1.7}.study-end{font-size:14px}
+@media(max-width:900px){.hero h1{font-size:32px}.projects-card .project-stack{left:auto;margin-right:auto;margin-left:0;transform:scale(.82) scaleX(-1) rotate(-7deg);transform-origin:left bottom}.brand{gap:9px}.brand strong{font-size:15px}.case-thinking-steps>li{padding-inline:10px}}
+@media(max-width:760px){.about-intro h1{font-size:30px}.career-details{padding:16px 0 0}.career-summary-meta{align-items:flex-start}.about-portrait{order:0}.about-intro{order:0}}
+@media(max-width:560px){.hero h1{font-size:30px;line-height:1.55!important}.hero p{font-size:14px}.study-overview{padding:16px}.study-overview h1{font-size:25px;line-height:1.5!important;margin-bottom:14px}.overview-label{font-size:10px}.quick-summary{gap:12px}.quick-summary dt{font-size:11px}.quick-summary dd{font-size:13px;line-height:1.85}.study-back{font-size:11px}.reading-start{font-size:12px;margin-top:14px}.reader-article{font-size:17px}.reading-section h2{font-size:22px}.reading-section h3{font-size:19px}.case-thinking strong{font-size:12px}.case-thinking small{font-size:11px}.cases .case-thinking-steps>li{aspect-ratio:auto}.cta .cta-copy h2{font-size:23px}.cta-kicker{font-size:11px}.catalog-card h2,.study-copy h2{font-size:21px}.channel-value{font-size:13px}.brand{padding-inline:10px}.site-header .language-mobile{margin-inline-end:7px}.thinking-symbol{flex:none}.case-thinking-steps>li{gap:5px}.pattern-map-stages>li{padding:16px}.about-actions a{font-size:12px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Mixed Persian and English headings must wrap as one line of text, not separate flex items. */
+.reading-section>h2{display:block;overflow-wrap:anywhere}.reading-section>h2::before{display:inline-block;margin-inline-end:12px;vertical-align:baseline}
+/* Persian-only refinements. The English files and shared styles remain unchanged. */
+.brand-language{display:flex;align-items:center;gap:10px;flex:0 1 auto;min-width:0}
+.brand-language .brand{flex:none}.brand-language .desktop-language{margin:0}
+.site-header nav{flex:none}
+.squiggle{transform:none}
+.snapshot{direction:ltr}.snapshot>div:first-child>span,.snapshot small{direction:rtl}.snapshot .stats{direction:ltr}.snapshot .stats>b{direction:ltr}
+.case-thinking{direction:ltr}.case-thinking-steps{direction:ltr;gap:0}.case-thinking-steps>li{direction:rtl;text-align:right;width:calc(100% + 10px);margin-left:-5px;z-index:1}.case-thinking-steps>li:nth-child(2){z-index:2}.case-thinking-steps>li:nth-child(3){z-index:3}
+.projects-card .project-stack{direction:ltr;right:auto;left:20px;transform:rotate(-7deg);transform-origin:center bottom}.project-stack img{transform:none}
+.projects-decoration,.case-hero-decoration,.contact-decoration{right:auto;left:0;max-width:60%;transform:none}
+.projects-hero h1,.case-intro h1,.contact-hero h1,.study-overview h1,.about-intro h1{font-size:36px;line-height:1.55!important}
+.projects-hero h1,.case-intro h1,.contact-hero h1{max-width:850px}
+.catalog-card h2{font-size:20px;line-height:1.6!important}.study-content h2{font-size:25px;line-height:1.6!important}
+.cta-external-icon,.channel-link>svg{transform:scaleX(-1)}
+@counter-style persian-digits{system:numeric;symbols:'۰' '۱' '۲' '۳' '۴' '۵' '۶' '۷' '۸' '۹';suffix:''}
+.reading-section>h2::before{content:counter(study-section,persian-digits)}.source-flow>li::before{content:counter(flow-step,persian-digits)}
+@media(max-width:900px){.brand-language .desktop-language{display:none}.brand-language .brand{flex-shrink:1}.site-header .brand-language{max-width:calc(100% - 109px)}.projects-card .project-stack{position:relative;inset:auto;width:min(100%,310px);height:170px;margin:20px auto -36px;transform:scale(.86) rotate(-7deg);transform-origin:center bottom;opacity:1;flex:none}.projects-card{padding-bottom:14px}.projects-card .project-stack div{width:180px;height:120px}.projects-card .project-stack div:nth-child(1){left:0;top:22px}.projects-card .project-stack div:nth-child(2){left:52px;top:0}.projects-card .project-stack div:nth-child(3){left:104px;top:22px}}
+@media(max-width:760px){.projects-hero h1,.case-intro h1,.contact-hero h1,.study-overview h1,.about-intro h1{font-size:30px}}
+@media(max-width:560px){.case-thinking-steps{gap:0}.case-thinking-steps>li{width:calc(100% + 8px);margin-left:-4px}.catalog-card h2{font-size:18px}.study-content h2{font-size:22px}.projects-decoration,.case-hero-decoration,.contact-decoration{display:none}.projects-card .project-stack{height:165px;margin:20px auto -36px;transform:scale(.82) rotate(-7deg)}}
+
+/* Match the English mobile gallery exactly: size, placement, tilt and bottom crop. */
+@media(max-width:900px){.projects-card .project-stack{position:relative;inset:auto;top:16px;width:min(100%,340px);height:170px;margin:4px -8px -18px auto;transform:scale(.92) rotate(-7deg);transform-origin:right bottom;opacity:1;direction:ltr}.projects-card .project-stack div{width:195px;height:130px}.projects-card .project-stack div:nth-child(1){left:0;top:22px}.projects-card .project-stack div:nth-child(2){left:52px;top:0}.projects-card .project-stack div:nth-child(3){left:104px;top:22px}}
+@media(max-width:380px){.projects-card .project-stack{transform:scale(.78) rotate(-7deg)}}
+
+@media(min-width:901px){.projects-card .project-stack{left:64px}}
+/* Let the decorative paths flow out of the left edge instead of ending inside the banner. */
+@media(min-width:561px){.projects-decoration,.case-hero-decoration,.contact-decoration{left:-36px;right:auto;top:0;width:34%;max-width:440px;height:100%;object-fit:cover;object-position:right center;transform:scaleX(-1);opacity:.8}}
+@media(min-width:901px){.projects-hero>h1,.projects-hero>p,.case-intro>h1,.case-intro>p,.contact-hero>h1,.contact-hero>p{max-width:68%}}
