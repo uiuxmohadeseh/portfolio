@@ -1,0 +1,74 @@
+/* Scoped reading layout for the AI Assistant case study. */
+.ai-study .reader-article{font-size:16px;line-height:1.8}
+.ai-study .reading-section{margin-bottom:44px}
+.ai-study .reading-section>h2{font-size:26px;line-height:1.35}
+.ai-study .reading-section p{margin-bottom:16px}
+.ai-study .ai-section-lead{font-size:18px;font-weight:600;line-height:1.7;color:#3c3049;margin-bottom:24px}
+.ai-study .case-facts dl{grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:16px 24px}
+.ai-study .case-facts dl>div:first-child{grid-column:1/-1}
+.ai-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}
+.ai-study .ai-card-grid .insight-card{margin:0;padding:20px;box-shadow:none}
+.ai-study .insight-card h3,.ai-study .ai-validation h3{font-size:18px;margin:0 0 12px;line-height:1.5;color:#352345}
+.ai-study .ai-card-grid p{font-size:15px;line-height:1.8;margin:0}
+.ai-takeaway{margin:24px 0;padding:20px 22px;border-inline-start:3px solid #9a7bd2;border-radius:14px;background:#f0e9f8}
+.ai-takeaway>strong{display:block;margin-bottom:8px;font-size:12px;color:#694694}
+.ai-study .ai-takeaway p{margin:0;color:#43314f}
+.ai-research-details{margin:22px 0;border:1px solid #e5daee;border-radius:16px;background:#fff;padding:16px 20px}
+.ai-research-details>summary{cursor:pointer;color:#654091;font-size:14px;font-weight:600;line-height:1.7}
+.ai-research-details>summary:focus-visible{outline:3px solid #9c85ff;outline-offset:5px;border-radius:4px}
+.ai-research-details[open]>summary{margin-bottom:18px}
+.ai-study .ai-findings .insight-card{margin:16px 0;padding:22px;box-shadow:none}
+.ai-evidence dl{margin:0;display:grid;gap:14px}
+.ai-evidence dl>div{display:grid;grid-template-columns:100px minmax(0,1fr);gap:16px}
+.ai-evidence dt{font-size:11px;font-weight:700;line-height:1.6;color:#786c84;padding-top:3px}
+.ai-evidence dd{margin:0;font-size:15px;line-height:1.85}
+.ai-evidence dl>div+div{padding-top:14px;border-top:1px solid #eee6f4}
+.ai-evidence dl>div+div dt{color:#634099}
+.ai-behavior{margin:24px 0;border:1px solid #e6ddef;border-radius:18px;overflow:hidden;background:#fff}
+.ai-behavior>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:22px;padding:18px 22px}
+.ai-behavior>div+div{border-top:1px solid #eee6f4}
+.ai-behavior dt{font-size:14px;font-weight:700;color:#634099}
+.ai-behavior dd{margin:0;font-size:15px}
+.ai-study .reading-section .ai-compact-list{display:block;margin:18px 0;padding:0;list-style:none}
+.ai-study .reading-section .ai-compact-list>li{padding:12px 0;margin:0;border:0;border-bottom:1px solid #e9e0ef;border-radius:0;background:transparent;line-height:1.8}
+.ai-study .reading-section .ai-compact-list>li:last-child{border:0}
+.ai-study .reading-section .ai-compact-list>li::before{display:none}
+.ai-compact-list strong{color:#45324f;font-weight:700}
+.ai-status{display:inline-block;margin-bottom:12px;color:#875a31;background:#fff2e5;border-radius:8px;padding:5px 9px;font-size:11px;font-weight:600;line-height:1.7}
+.ai-study .ai-scope{border-color:#eedac9;background:#fffaf6}
+.ai-validation{margin:24px 0;padding:22px;border:1px solid #e7def1;border-radius:18px;background:#fff}
+.ai-validation .ai-status{background:#eee8fa;color:#694399}
+.ai-anchor{display:block;scroll-margin-top:112px}
+@media(max-width:560px){
+ .ai-study .reader-article{font-size:16px}
+ .ai-study .reading-section>h2{font-size:22px}
+ .ai-study .ai-section-lead{font-size:17px}
+ .ai-card-grid{grid-template-columns:1fr;gap:12px}
+ .ai-study .ai-findings .insight-card,.ai-study .ai-card-grid .insight-card{padding:18px}
+ .ai-evidence dl>div,.ai-behavior>div{grid-template-columns:1fr;gap:5px}
+ .ai-behavior>div{padding:16px 18px}
+ .ai-takeaway,.ai-validation{padding:18px}
+ .ai-research-details{padding:16px}
+ .ai-study .reading-section{margin-bottom:36px}
+}
+
+/* Ordered stages preserve the reading order in both English and Persian. */
+.ai-interaction-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;counter-reset:ax-step;list-style:none;margin:16px 0 0;padding:0}
+.ai-study .ai-interaction-steps>li{counter-increment:ax-step;display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-width:0;margin:0;padding:14px 12px;border:1px solid #e4d9ef;border-radius:12px;background:#fff;color:#5a4370;font-size:13px;line-height:1.65}
+.ai-interaction-steps>li::before{content:counter(ax-step);display:grid;place-items:center;width:23px;height:23px;border-radius:50%;background:#f0e9f8;color:#8562ae;font-size:11px;font-weight:700;flex:none}
+html[lang=fa] .ai-interaction-steps>li::before{content:counter(ax-step,persian-digits)}
+@media(max-width:560px){.ai-interaction-steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Project facts: one clear role, a readable scope, and balanced metadata. */
+.ai-study .ai-project-facts{padding:22px;border-radius:20px}
+.ai-study .ai-project-facts dl{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.ai-study .ai-project-facts .ai-role-fact{grid-column:1/-1}
+.ai-project-facts .ai-role-title{display:block;margin:6px 0 14px;font-size:18px;font-weight:600;color:#473552;line-height:1.6}
+.ai-study .ai-project-facts .ai-role-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 24px;margin:0;padding:0;list-style:none}
+.ai-study .ai-project-facts .ai-role-list>li{padding:0;margin:0;border:0;border-radius:0;background:transparent;font-size:13px;line-height:1.7;color:#7a6c84}
+.ai-study .ai-project-facts .ai-role-list>li::before{display:none}
+.ai-project-facts .ai-meta-fact{padding:15px 16px;background:#f8f5fc;border-radius:12px;min-width:0}
+.ai-project-facts .ai-meta-fact dd{margin-top:9px;font-size:13px;line-height:1.7}
+.ai-project-facts .ai-context-values{display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+.ai-context-values>bdi{padding:3px 7px;border-radius:6px;background:#fff;color:#776682;font-size:11px;white-space:nowrap}
+@media(max-width:560px){.ai-study .ai-project-facts{padding:18px}.ai-study .ai-project-facts dl{grid-template-columns:1fr;gap:14px}.ai-project-facts .ai-role-title{font-size:17px}.ai-study .ai-project-facts .ai-role-list{gap:7px 14px}.ai-project-facts .ai-meta-fact{padding:14px}}
