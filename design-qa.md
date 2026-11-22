@@ -84,3 +84,9 @@ No actionable P0/P1/P2 visual defects remain in the checked views.
 - Career progress now combines opacity with a 22px rise and a subtle 10px physical-side drift on larger screens. Individual scroll progress and hero typing remain unchanged.
 - Career entrances respond again when scrolling back and forward, instead of becoming permanently static after their first reveal. Project entrances rearm after leaving below the viewport. Reduced-motion and keyboard-focus reveals remain immediate.
 - Browser checks confirmed waiting cards at opacity 0 and translation 22px, followed by visible cards with translation cleared. No horizontal overflow or browser console errors. Syntax and whitespace checks passed.
+
+### Pause between career cards
+
+- Added an 800ms reading pause after the previous card completes its entrance. The next card waits in a `queued` state even when its scroll position would otherwise reveal it immediately.
+- Offscreen cards passed by a large navigation jump do not accumulate a long queue. Reverse scrolling resets the reveal cycle; keyboard focus and reduced-motion bypass the pause.
+- Browser proof: first card was entering at opacity 0.994111 while the second remained queued at opacity 0 and the next two remained waiting. No horizontal overflow. Syntax and whitespace checks passed.
