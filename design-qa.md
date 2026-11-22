@@ -56,3 +56,11 @@ No actionable P0/P1/P2 visual defects remain in the checked views.
 - Original `codex/portfolio` remains at `e8c7be0`.
 - Original `C:/Users/NITRO/Documents/ChatGPT/Portfolio` directory remains untouched.
 - Keep the local preview available for user review before publication.
+
+## Scroll motion follow-up
+
+- Added one-time viewport entrances for hero copy, section headings, featured projects, career cards, passion notes, the statement, and contact cards. Project columns and contact cards have short staggered delays. Career cards enter from their physical side of the timeline.
+- Web Animations affect only opacity and the independent translate property; layout, existing note rotations, and case-study UI loops stay intact. Content stays visible with unsupported APIs or disabled JavaScript. Keyboard focus finishes the relevant entrance immediately.
+- Implemented reduced-motion support, including finishing active entrances when the preference changes. Smaller screens use shorter travel distances and no contact-card stagger.
+- Verified actual `entering` and `visible` states and intermediate computed opacity/translation in the in-app browser for English project cards, timeline cards, and Persian project cards. No horizontal overflow or browser console errors in those checks. Reduced-motion preference handling was inspected in source; OS preference was not changed for testing.
+- JavaScript syntax and Git whitespace checks passed. No publication.
