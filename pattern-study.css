@@ -1,0 +1,29 @@
+.pattern-study .reader-article{font-size:16px;line-height:1.8}
+.pattern-study .reading-section{margin-bottom:46px}
+.pattern-study .reading-section>h2{font-size:26px;line-height:1.4}
+.pattern-study .reading-section p{margin-bottom:16px}
+.pattern-study .pattern-lead{font-size:18px;line-height:1.75;font-weight:600;color:#45334f;margin-bottom:24px}
+.pattern-cards,.pattern-taxonomy,.pattern-rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0}
+.pattern-card{min-width:0;padding:22px;border:1px solid #e7deef;border-radius:18px;background:white}
+.pattern-study .pattern-card>h3{font-size:17px;line-height:1.5;margin:0 0 10px;color:#483056}
+.pattern-study .pattern-card>p{font-size:14px;line-height:1.85;margin:0;color:#766880}
+.pattern-type-number{display:block;font-size:11px;color:#9c82b8;font-weight:600;margin-bottom:9px}
+.pattern-taxonomy .pattern-card dl{margin:16px 0 0;display:grid;gap:14px}
+.pattern-taxonomy .pattern-card dl>div+div{border-top:1px solid #eee6f4;padding-top:12px}
+.pattern-taxonomy dt{font-size:10px;font-weight:700;line-height:1.7;color:#785495;margin-bottom:5px}
+.pattern-taxonomy dd{margin:0;font-size:13px;line-height:1.8;color:#81718a}
+.pattern-takeaway{padding:20px 22px;border-inline-start:3px solid #aa8dca;background:#f1eaf8;border-radius:14px;margin:24px 0}
+.pattern-takeaway>strong{font-size:12px;line-height:1.7;display:block;color:#775391;margin-bottom:7px}
+.pattern-study .pattern-takeaway p{margin:0;font-size:15px;line-height:1.85;color:#604b6e}
+.pattern-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;list-style:none;margin:24px 0;padding:0;counter-reset:task-step}
+.pattern-study .pattern-steps>li{counter-increment:task-step;position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:7px;margin:0;padding:15px 12px;min-width:0;border:1px solid #e5d9ef;border-radius:14px;background:#fff}
+.pattern-steps>li::before{content:counter(task-step);display:grid;place-items:center;width:23px;height:23px;border-radius:50%;background:#f1eafa;font-size:11px;color:#8764a6}
+html[lang=fa] .pattern-steps>li::before{content:counter(task-step,persian-digits)}
+.pattern-steps strong{font-size:13px;color:#664580}.pattern-steps span{font-size:12px;line-height:1.75;color:#8a7794}
+.pattern-label{display:inline-block;margin:0 0 16px;padding:6px 9px;border-radius:7px;background:#eee7f7;color:#7b5a96;font-size:10px;font-weight:600;line-height:1.8}
+.pattern-study .pattern-list{display:block;list-style:none;margin:18px 0;padding:0}
+.pattern-study .pattern-list>li{padding:12px 0;margin:0;background:transparent;border:0;border-radius:0;border-bottom:1px solid #e9e0ef;font-size:14px;line-height:1.9}
+.pattern-study .pattern-list>li:last-child{border:0}.pattern-study .pattern-list>li::before{display:none}
+.pattern-rules .pattern-card:first-child{background:#f6fbf9;border-color:#dbece4}.pattern-rules .pattern-card:last-child{background:#fffbf5;border-color:#eee0cf}
+.pattern-anchor{display:block;scroll-margin-top:112px}
+@media(max-width:560px){.pattern-cards,.pattern-taxonomy,.pattern-rules{grid-template-columns:1fr;gap:12px}.pattern-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.pattern-card{padding:19px}.pattern-study .reading-section>h2{font-size:22px}.pattern-study .pattern-lead{font-size:17px}.pattern-takeaway{padding:18px}.pattern-study .reading-section{margin-bottom:36px}}
