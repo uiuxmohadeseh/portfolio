@@ -70,3 +70,10 @@ No actionable P0/P1/P2 visual defects remain in the checked views.
 - Reduced entrance travel and extended general entrance durations to 820–980 ms with a gentler easing curve.
 - Career cards now follow individual scroll progress instead of IntersectionObserver timing. Each starts at 82% of the viewport and completes within a travel range shorter than the spacing to the next card. Frame-rate-independent smoothing softens wheel and touch input. Completed cards remain visible when scrolling back.
 - Verified using normal Down-key scrolling in the in-app browser: first career card reached `visible` at opacity 1.00 while the second was `entering` at 0.02 and the third remained `waiting` at 0.00. No scroll interception or automatic advancement. Keyboard focus and reduced-motion handling still reveal the content immediately.
+
+### Pure fades and hero typing
+
+- Replaced all home entrance translations with opacity-only fades lasting 1100–1250 ms. Career cards retain independent scroll progress with a longer fade range and gentler temporal smoothing; no side or vertical travel.
+- Added a one-time, line-by-line hero typing sequence with a temporary blinking caret. Full text remains in the DOM with an accessible heading label. Font-aware grapheme boundaries control clipping, preserving Persian letter joining and the original heading dimensions, solid/outline styles, and line offsets.
+- Reduced-motion preference skips typing; a preference change or resize safely completes the title. Case-study content and UI demonstration loops are unchanged.
+- In-app browser verified English and Persian typing start/completion (`typedLines=2`, clip paths removed), no overflow, and no console errors. Persian career proof showed first card opacity 0.383818 while the next two waited at zero, with computed translation `none` for all three.

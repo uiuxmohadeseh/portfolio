@@ -70,7 +70,6 @@
       });
     }
     register('.hero-hello', 'intro');
-    register('.new-hero h1', 'intro', 70);
     register('.new-hero>p', 'intro', 140);
     register('.hero-buttons', 'intro', 210);
     register('.new-work>.section-label,.new-about>.section-label,.new-contact>.section-label', 'heading');
@@ -91,22 +90,18 @@
         // Content is visible by default, including when JS or motion support is unavailable.
         if (reducedMotion.matches || element.contains(document.activeElement)) continue;
         const kind = element.dataset.scrollReveal;
-        const x = 0;
-        let y = mobileMotion.matches ? 14 : 22;
         let delay = parseInt(element.style.getPropertyValue('--reveal-delay')) || 0;
-        if (kind === 'intro' || kind === 'heading') y = 12;
         if (kind === 'project') {
-          y = mobileMotion.matches ? 18 : 26;
           if (!mobileMotion.matches && element.closest('.featured-column')?.matches(':nth-child(2)')) delay = 100;
         }
         if (mobileMotion.matches && kind === 'contact') delay = 0;
         element.dataset.scrollState = 'entering';
         const animation = element.animate([
-          {opacity:0,translate:`${x}px ${y}px`},
-          {opacity:1,translate:'0px 0px'}
+          {opacity:0},
+          {opacity:1}
         ], {
-          duration:kind === 'project' ? 980 : 820,
-          delay,easing:'cubic-bezier(.22,.61,.36,1)',fill:'backwards'
+          duration:kind === 'project' ? 1250 : 1100,
+          delay,easing:'cubic-bezier(.25,.1,.25,1)',fill:'backwards'
         });
         active.set(element, animation);
         animation.onfinish = animation.oncancel = () => {
@@ -137,7 +132,7 @@
       timelineFrame = 0;
       const elapsed = previousFrameTime ? Math.min(time - previousFrameTime, 50) : 16;
       previousFrameTime = time;
-      const smoothing = 1 - Math.exp(-elapsed / 85);
+      const smoothing = 1 - Math.exp(-elapsed / 140);
       let unsettled = false;
       // Read the untransformed timeline items before writing animated card styles.
       const boxes = timeline.map(card => card.item.getBoundingClientRect());
@@ -146,19 +141,16 @@
         if (reducedMotion.matches) {showTimelineCard(card);return;}
         const box = boxes[index];
         // Finish one entrance before the next card reaches its own trigger.
-        const travel = Math.min(150,box.height * .75,innerHeight * .22);
-        const target = Math.max(0,Math.min(1,(innerHeight * .82 - box.top) / Math.max(1,travel)));
+        const travel = Math.min(180,box.height * .9,innerHeight * .26);
+        const target = Math.max(0,Math.min(1,(innerHeight * .88 - box.top) / Math.max(1,travel)));
         if (target === 1 && box.bottom < 0) {showTimelineCard(card);return;}
         card.progress += (target - card.progress) * smoothing;
         if (Math.abs(target - card.progress) < .002) card.progress = target;
         else unsettled = true;
         if (card.progress === 1) {showTimelineCard(card);return;}
         const eased = card.progress * card.progress * (3 - 2 * card.progress);
-        const side = box.left + box.width / 2 < innerWidth / 2 ? -1 : 1;
-        const x = mobileMotion.matches ? 0 : side * 12 * (1 - eased);
         card.element.style.opacity = String(eased);
-        card.element.style.translate = `${x}px ${16 * (1 - eased)}px`;
-        card.element.style.willChange = eased > 0 ? 'opacity, translate' : 'auto';
+        card.element.style.willChange = eased > 0 ? 'opacity' : 'auto';
         card.element.dataset.scrollState = eased > 0 ? 'entering' : 'waiting';
       });
       if (unsettled) timelineFrame = requestAnimationFrame(updateTimeline);
@@ -188,6 +180,95 @@
     });
   }
   initializeScrollMotion();
+  function initializeHeroTyping() {
+    const heading = document.querySelector('.redesign-home .new-hero h1');
+    if (!heading || !Element.prototype.animate || !('IntersectionObserver' in window)) return;
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    if (reducedMotion.matches) return;
+    const lines = [...heading.querySelectorAll(':scope>span')];
+    if (!lines.length) return;
+    // Keep full, connected Persian text and its original layout throughout typing.
+    heading.setAttribute('aria-label',lines.map(line=>line.textContent).join(' '));
+    heading.dataset.typingState = 'preparing';
+    heading.dataset.typedLines = '0';
+    const rtl = getComputedStyle(heading).direction === 'rtl';
+    const hiddenClip = rtl ? 'inset(-12px 0px -12px 100%)' : 'inset(-12px 100% -12px 0px)';
+    lines.forEach(line=>{line.style.clipPath=hiddenClip;});
+    const caret = document.createElement('i');
+    caret.className = 'hero-typing-caret';
+    caret.setAttribute('aria-hidden','true');
+    const animations = new Set();
+    let finished = false;
+    let started = false;
+    function finishTyping() {
+      if (finished) return;
+      finished = true;
+      animations.forEach(animation=>animation.cancel());
+      animations.clear();
+      lines.forEach(line=>line.style.removeProperty('clip-path'));
+      caret.remove();
+      heading.dataset.typingState = 'complete';
+      heading.dataset.typedLines = String(lines.length);
+      observer.disconnect();
+      window.removeEventListener('resize',finishTyping);
+      reducedMotion.removeEventListener('change',onMotionChange);
+    }
+    function onMotionChange(event) {if (event.matches) finishTyping();}
+    async function typeLines() {
+      if (started || finished) return;
+      started = true;
+      try {
+        await document.fonts.ready;
+        if (finished) return;
+        heading.dataset.typingState = 'typing';
+        heading.append(caret);
+        for (const [index,line] of lines.entries()) {
+          if (finished) return;
+          const text = line.firstChild;
+          const segments = typeof Intl.Segmenter === 'function'
+            ? [...new Intl.Segmenter(fa?'fa':'en',{granularity:'grapheme'}).segment(text.textContent)].map(part=>part.segment)
+            : Array.from(text.textContent);
+          const bounds = line.getBoundingClientRect();
+          const headingBounds = heading.getBoundingClientRect();
+          const range = document.createRange();
+          const frames = [{clipPath:hiddenClip,offset:0,easing:'steps(1,end)'}];
+          const caretFrames = [];
+          let offset = 0;
+          const cursorY = bounds.top-headingBounds.top+bounds.height*.13;
+          caret.style.height = `${bounds.height*.75}px`;
+          for (let count=0;count<=segments.length;count++) {
+            if (count) offset += segments[count-1].length;
+            range.setStart(text,0);range.setEnd(text,offset);
+            const prefix = range.getBoundingClientRect();
+            const edge = count ? (rtl?prefix.left:prefix.right) : (rtl?bounds.right:bounds.left);
+            const cursorX = edge-headingBounds.left+(rtl?-4:3);
+            caretFrames.push({translate:`${cursorX}px ${cursorY}px`,offset:count/segments.length,easing:'steps(1,end)'});
+            if (!count) continue;
+            const remaining = Math.max(0,Math.min(100,(rtl?edge-bounds.left:bounds.right-edge)/bounds.width*100));
+            frames.push({clipPath:rtl?`inset(-12px 0px -12px ${remaining}%)`:`inset(-12px ${remaining}% -12px -2px)`,offset:count/segments.length,easing:'steps(1,end)'});
+          }
+          const timing = {duration:segments.length*105,delay:index?200:220,fill:'both'};
+          const lettering = line.animate(frames,timing);
+          const cursor = caret.animate(caretFrames,timing);
+          animations.add(lettering);animations.add(cursor);
+          await Promise.all([lettering.finished,cursor.finished]);
+          if (finished) return;
+          line.style.removeProperty('clip-path');
+          lettering.cancel();cursor.cancel();
+          animations.delete(lettering);animations.delete(cursor);
+          heading.dataset.typedLines = String(index+1);
+        }
+        finishTyping();
+      } catch (_) {finishTyping();}
+    }
+    const observer = new IntersectionObserver(entries=>{
+      if (entries.some(entry=>entry.isIntersecting)) {observer.disconnect();typeLines();}
+    },{threshold:.15});
+    observer.observe(heading);
+    window.addEventListener('resize',finishTyping,{passive:true});
+    reducedMotion.addEventListener('change',onMotionChange);
+  }
+  initializeHeroTyping();
   const status = document.querySelector('#copy-status');
   document.querySelectorAll('.new-copy').forEach(button => {
     let timer;
