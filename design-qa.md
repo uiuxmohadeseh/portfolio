@@ -118,3 +118,11 @@ No actionable P0/P1/P2 visual defects remain in the checked views.
 - Extended the same hierarchy to reading pages: 26px case overview titles, 24px section titles, and 18px nested headings. UI-demo captions stay at 16px. No article, encrypted content, or desktop typography changed.
 - In-app browser verified all four home section titles at 24px and all five project titles at 20px in both languages at 390px width. English and Persian AI overview titles measured 26px and section titles 24px. No horizontal overflow in these checks.
 - Visual proof: `C:/Users/NITRO/Documents/ChatGPT/potfo/tmp/redesign-reference/mobile-type-scale-en.jpg`. Git whitespace checks passed.
+
+### Simplified scroll entrances (local review)
+
+- Replaced the previous scroll-progress effects and repeated fades with short, one-time entrances on project, career, passion-note group, and contact cards. Headings and introductory text remain stationary and immediately readable.
+- Cards rise only 10–16px over 620–700ms. Desktop cards entering together have at most 130ms of stagger; mobile has no stagger. Returning up the page keeps completed cards visible, without queues or reverse fades.
+- Focused cards and reduced-motion preferences bypass the entrance. Without animation support, all content remains visible. No persistent scroll animation loop is used.
+- Verified English desktop and Persian mobile (390px): career cards advance from waiting to visible after scrolling, completed cards stay visible on return, and no horizontal overflow was found. Source comparison confirms the entire hero typing function is unchanged; browser typing state reaches complete. JavaScript syntax and Git whitespace checks passed.
+- This revision is prepared locally on the redesign branch and is not published.

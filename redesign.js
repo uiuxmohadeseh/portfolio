@@ -60,118 +60,56 @@
     const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
     const mobileMotion = matchMedia('(max-width:700px)');
     const active = new Map();
-    const targets = new Set();
-    function register(selector, kind, delay = 0) {
-      document.querySelectorAll(selector).forEach((element, index) => {
-        element.dataset.scrollReveal = kind;
-        element.dataset.scrollState = 'waiting';
-        element.style.setProperty('--reveal-delay', `${typeof delay === 'function' ? delay(index) : delay}ms`);
-        targets.add(element);
-      });
-    }
-    register('.hero-hello', 'intro');
-    register('.new-hero>p', 'intro', 140);
-    register('.hero-buttons', 'intro', 210);
-    register('.new-work>.section-label,.new-about>.section-label,.new-contact>.section-label', 'heading');
-    register('.new-work>h2,.new-about>h2,.new-contact>h2', 'heading', 60);
-    register('.career-intro,.new-contact>p:not(.new-status)', 'heading', 110);
-    register('.featured-project', 'project');
-    register('.passion-copy', 'heading');
-    register('.passion-notes', 'notes', 100);
-    register('.new-quote', 'statement');
-    register('.new-channel', 'contact', index => index * 75);
+    // Keep text and the hero immediately readable. Only the card surfaces enter.
+    const targets = [...document.querySelectorAll('.featured-project,.timeline-card,.passion-notes,.new-channel')];
+    targets.forEach(element => {
+      element.dataset.scrollReveal = element.matches('.timeline-card') ? 'timeline' : 'card';
+      element.dataset.scrollState = reducedMotion.matches ? 'visible' : 'waiting';
+    });
+    if (reducedMotion.matches) return;
 
+    function settle(element) {
+      element.dataset.scrollState = 'visible';
+      active.delete(element);
+    }
     const observer = new IntersectionObserver(entries => {
+      let batchIndex = 0;
       for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
         const element = entry.target;
-        if (!entry.isIntersecting) {
-          if (entry.boundingClientRect.top >= innerHeight && !active.has(element)) element.dataset.scrollState = 'waiting';
+        observer.unobserve(element);
+        if (reducedMotion.matches || element.contains(document.activeElement)) {
+          settle(element);
           continue;
         }
-        if (element.dataset.scrollState === 'visible' || active.has(element)) continue;
-        element.dataset.scrollState = 'visible';
-        // Content is visible by default, including when JS or motion support is unavailable.
-        if (reducedMotion.matches || element.contains(document.activeElement)) continue;
-        const kind = element.dataset.scrollReveal;
-        let delay = parseInt(element.style.getPropertyValue('--reveal-delay')) || 0;
-        if (kind === 'project') {
-          if (!mobileMotion.matches && element.closest('.featured-column')?.matches(':nth-child(2)')) delay = 100;
-        }
-        if (mobileMotion.matches && kind === 'contact') delay = 0;
-        const rise = kind === 'project' ? 28 : kind === 'contact' ? 18 : kind === 'notes' ? 16 : 0;
+        const career = element.matches('.timeline-card');
+        const rise = mobileMotion.matches ? 10 : career ? 12 : 16;
+        const delay = mobileMotion.matches ? 0 : Math.min(batchIndex++ * 65,130);
         element.dataset.scrollState = 'entering';
         const animation = element.animate([
-          {opacity:0,translate:`0px ${rise}px`},
+          {opacity:.3,translate:`0px ${rise}px`},
           {opacity:1,translate:'0px 0px'}
         ], {
-          duration:kind === 'project' ? 1250 : 1100,
-          delay,easing:'cubic-bezier(.25,.1,.25,1)',fill:'backwards'
+          duration:career ? 620 : 700,
+          delay,easing:'cubic-bezier(.22,.61,.36,1)',fill:'backwards'
         });
-        active.set(element, animation);
-        animation.onfinish = animation.oncancel = () => {
-          element.dataset.scrollState = element.getBoundingClientRect().top >= innerHeight ? 'waiting' : 'visible';
-          active.delete(element);
-        };
+        active.set(element,animation);
+        animation.onfinish = animation.oncancel = () => settle(element);
       }
-    }, {rootMargin:'0px 0px -24px 0px',threshold:0.06});
+    },{rootMargin:'0px 0px -32px 0px',threshold:.08});
     targets.forEach(element => observer.observe(element));
-
-    // Career progress is a direct function of scroll position, not elapsed time.
-    const timeline = [...document.querySelectorAll('.timeline-card')].map(element => {
-      element.dataset.scrollReveal = 'timeline';
-      element.dataset.scrollState = 'waiting';
-      return {element,item:element.closest('.timeline-item'),finished:false};
-    });
-    let timelineFrame = 0;
-    function showTimelineCard(card,permanent = false) {
-      card.finished = permanent;
-      card.element.dataset.scrollState = 'visible';
-      card.element.style.removeProperty('opacity');
-      card.element.style.removeProperty('translate');
-      card.element.style.removeProperty('will-change');
-    }
-    function updateTimeline() {
-      timelineFrame = 0;
-      // Read the untransformed timeline items before writing animated card styles.
-      const boxes = timeline.map(card => card.item.getBoundingClientRect());
-      timeline.forEach((card,index) => {
-        if (card.finished) return;
-        if (reducedMotion.matches) {showTimelineCard(card,true);return;}
-        const box = boxes[index];
-        // Spread the fade across most of the viewport instead of a short pop-in zone.
-        const travel = Math.max(240,Math.min(440,innerHeight * .6));
-        const progress = Math.max(0,Math.min(1,(innerHeight * .96 - box.top) / travel));
-        if (progress === 1) {showTimelineCard(card);return;}
-        const eased = progress * progress * (3 - 2 * progress);
-        card.element.style.opacity = String(eased);
-        const side = box.left + box.width / 2 < innerWidth / 2 ? -1 : 1;
-        const drift = mobileMotion.matches ? 0 : side * 6 * (1 - eased);
-        card.element.style.translate = `${drift}px ${16 * (1 - eased)}px`;
-        card.element.style.willChange = eased > 0 ? 'opacity, translate' : 'auto';
-        card.element.dataset.scrollState = eased > 0 ? 'entering' : 'waiting';
-      });
-    }
-    function scheduleTimeline() {
-      if (!timelineFrame) timelineFrame = requestAnimationFrame(updateTimeline);
-    }
-    window.addEventListener('scroll',scheduleTimeline,{passive:true});
-    window.addEventListener('resize',scheduleTimeline,{passive:true});
-    scheduleTimeline();
-    // Keyboard navigation never has to wait for an entrance animation.
-    document.addEventListener('focusin', event => {
+    document.addEventListener('focusin',event => {
       const element = event.target.closest('[data-scroll-reveal]');
       if (!element) return;
       observer.unobserve(element);
-      element.dataset.scrollState = 'visible';
       active.get(element)?.finish();
-      const careerCard = timeline.find(card => card.element === element);
-      if (careerCard) showTimelineCard(careerCard,true);
+      settle(element);
     });
-    reducedMotion.addEventListener('change', event => {
-      if (event.matches) {
-        active.forEach(animation => animation.finish());
-        timeline.forEach(card=>showTimelineCard(card,true));
-      }
+    reducedMotion.addEventListener('change',event => {
+      if (!event.matches) return;
+      observer.disconnect();
+      active.forEach(animation => animation.finish());
+      targets.forEach(settle);
     });
   }
   initializeScrollMotion();
