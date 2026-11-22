@@ -97,3 +97,9 @@ No actionable P0/P1/P2 visual defects remain in the checked views.
 - A reveal range shorter than the distance between career entries preserves the one-by-one rhythm. Faster scrolling advances the animation faster; stopping scrolling leaves the card at that exact position. Reverse scrolling retraces the same fade and movement.
 - Updates are batched into one animation frame per scroll/resize event, with no continuing animation loop. Reduced-motion and keyboard focus still bypass the effect.
 - Browser checks showed waiting cards at 22px travel progressing to visible cards with translation cleared after scrolling past them; no queue, viewport overflow, or console errors. Syntax and whitespace checks passed.
+
+### Longer, gentler career fades
+
+- The short card-height reveal zone made ordinary scroll increments change opacity too abruptly. Replaced it with a 240–440px range spanning 60% of viewport height, starting near the bottom edge (96%). Progress remains entirely scroll-driven with no timers or temporal lag.
+- Reduced travel to 16px vertically and 6px sideways on larger screens while retaining the smooth opacity curve and staggered physical positions.
+- Browser proof at a 678px-high viewport: first card began at opacity 0.0909522 with 14.5448px remaining vertical travel; the next two still waited at zero. No horizontal overflow. Syntax and whitespace checks passed.

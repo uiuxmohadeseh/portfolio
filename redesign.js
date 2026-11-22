@@ -138,15 +138,15 @@
         if (card.finished) return;
         if (reducedMotion.matches) {showTimelineCard(card,true);return;}
         const box = boxes[index];
-        // A spatial gap between reveal ranges replaces a fixed timed pause.
-        const travel = Math.min(180,box.height * .75,innerHeight * .26);
-        const progress = Math.max(0,Math.min(1,(innerHeight * .88 - box.top) / Math.max(1,travel)));
+        // Spread the fade across most of the viewport instead of a short pop-in zone.
+        const travel = Math.max(240,Math.min(440,innerHeight * .6));
+        const progress = Math.max(0,Math.min(1,(innerHeight * .96 - box.top) / travel));
         if (progress === 1) {showTimelineCard(card);return;}
         const eased = progress * progress * (3 - 2 * progress);
         card.element.style.opacity = String(eased);
         const side = box.left + box.width / 2 < innerWidth / 2 ? -1 : 1;
-        const drift = mobileMotion.matches ? 0 : side * 10 * (1 - eased);
-        card.element.style.translate = `${drift}px ${22 * (1 - eased)}px`;
+        const drift = mobileMotion.matches ? 0 : side * 6 * (1 - eased);
+        card.element.style.translate = `${drift}px ${16 * (1 - eased)}px`;
         card.element.style.willChange = eased > 0 ? 'opacity, translate' : 'auto';
         card.element.dataset.scrollState = eased > 0 ? 'entering' : 'waiting';
       });
