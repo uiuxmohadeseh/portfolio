@@ -35,6 +35,21 @@ html[lang=fa]{direction:rtl;--body:YekanBakh,sans-serif;--heading:YekanBakh,sans
   .project-book .project-visual{display:block;flex:none;height:auto;aspect-ratio:auto;margin-top:12px}
   .project-book .project-visual img{width:100%;height:auto;max-height:none;object-fit:contain;object-position:center top}
 }
+/* Shared mobile type scale: section 24px, project 20px, channel 18px. */
+@media(max-width:700px){
+  .redesign-home{--mobile-section-title:1.5rem;--mobile-project-title:1.25rem;--mobile-card-title:1.125rem}
+  .redesign-home :is(.new-work,.new-about,.passion-copy,.new-contact)>h2{font-size:var(--mobile-section-title);line-height:1.3;font-weight:600;letter-spacing:-.3px}
+  html[lang=fa] .redesign-home :is(.new-work,.new-about,.passion-copy,.new-contact)>h2{font-size:var(--mobile-section-title);line-height:1.45;font-weight:700;letter-spacing:0}
+  .redesign-home .featured-project h3,html[lang=fa] .redesign-home .featured-project h3{font-size:var(--mobile-project-title);line-height:1.4;font-weight:600;margin-bottom:12px}
+  html[lang=fa] .redesign-home .featured-project h3{line-height:1.5;font-weight:700}
+  .redesign-home .new-channel h3{font-size:var(--mobile-card-title);line-height:1.4;font-weight:600}
+  .redesign-home .timeline-card h3{font-size:1rem;line-height:1.4;font-weight:600}
+  .redesign-home .new-quote p,html[lang=fa] .redesign-home .new-quote p{font-size:var(--mobile-section-title);line-height:1.4;letter-spacing:0}
+  html[lang=fa] .redesign-home .new-quote p{line-height:1.65}
+  .redesign-home .new-hero h1{font-size:clamp(42px,11vw,62px);line-height:1.04;letter-spacing:-3px}
+  .redesign-home .new-hero h1>.outline-title{font-size:clamp(40px,10.2vw,58px);letter-spacing:-2.5px}
+  html[lang=fa] .redesign-home .new-hero h1,html[lang=fa] .redesign-home .new-hero h1>.outline-title{font-size:clamp(52px,14vw,68px);line-height:1.15;letter-spacing:0}
+}
 .new-hero h1{position:relative}.hero-typing-caret{position:absolute;left:0;top:0;width:2px;background:#f8f7fb;pointer-events:none;animation:hero-caret-blink .8s steps(1,end) infinite;-webkit-text-stroke:0}
 @keyframes hero-caret-blink{0%,60%,100%{opacity:1}61%,99%{opacity:0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.button:hover,.passion-note:hover{transform:none}.hero-typing-caret{display:none}}

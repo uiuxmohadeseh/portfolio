@@ -110,3 +110,11 @@ No actionable P0/P1/P2 visual defects remain in the checked views.
 - Removed the fixed 250px Rahro media height and bottom-aligned letterboxing. The original image now uses its natural aspect ratio, with a 12px container gap after the button; its own top artwork padding is retained without editing/cropping the asset.
 - At a 390px viewport, English heading line height is 35px, Persian is 39.15px, media height is 186px, and the button-to-media-container gap is 12px in both languages. No horizontal overflow. Desktop rules are unchanged.
 - Visual proof: `C:/Users/NITRO/Documents/ChatGPT/potfo/tmp/redesign-reference/mobile-book-spacing.jpg`.
+
+### Consistent mobile title scale
+
+- Added mobile-only shared heading sizes: 24px section headings, 20px featured-project titles, 18px contact-card headings, and 16px career-role headings. Reduced the oversized Passion title and quote to the same section scale. Kept smaller note labels subordinate.
+- Reduced mobile hero display sizes while retaining the solid/outline treatment, existing offsets, and bilingual typing behavior. Persian display measured 54.656px at 390px viewport width, down from 72px.
+- Extended the same hierarchy to reading pages: 26px case overview titles, 24px section titles, and 18px nested headings. UI-demo captions stay at 16px. No article, encrypted content, or desktop typography changed.
+- In-app browser verified all four home section titles at 24px and all five project titles at 20px in both languages at 390px width. English and Persian AI overview titles measured 26px and section titles 24px. No horizontal overflow in these checks.
+- Visual proof: `C:/Users/NITRO/Documents/ChatGPT/potfo/tmp/redesign-reference/mobile-type-scale-en.jpg`. Git whitespace checks passed.
