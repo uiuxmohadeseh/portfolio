@@ -103,3 +103,10 @@ No actionable P0/P1/P2 visual defects remain in the checked views.
 - The short card-height reveal zone made ordinary scroll increments change opacity too abruptly. Replaced it with a 240–440px range spanning 60% of viewport height, starting near the bottom edge (96%). Progress remains entirely scroll-driven with no timers or temporal lag.
 - Reduced travel to 16px vertically and 6px sideways on larger screens while retaining the smooth opacity curve and staggered physical positions.
 - Browser proof at a 678px-high viewport: first card began at opacity 0.0909522 with 14.5448px remaining vertical travel; the next two still waited at zero. No horizontal overflow. Syntax and whitespace checks passed.
+
+### Mobile heading and Rahro spacing
+
+- Mobile-only rules (up to 700px) tighten the Work heading to 1.25 line height in English and 1.45 in Persian.
+- Removed the fixed 250px Rahro media height and bottom-aligned letterboxing. The original image now uses its natural aspect ratio, with a 12px container gap after the button; its own top artwork padding is retained without editing/cropping the asset.
+- At a 390px viewport, English heading line height is 35px, Persian is 39.15px, media height is 186px, and the button-to-media-container gap is 12px in both languages. No horizontal overflow. Desktop rules are unchanged.
+- Visual proof: `C:/Users/NITRO/Documents/ChatGPT/potfo/tmp/redesign-reference/mobile-book-spacing.jpg`.

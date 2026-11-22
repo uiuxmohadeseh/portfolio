@@ -28,6 +28,13 @@ html[lang=fa]{direction:rtl;--body:YekanBakh,sans-serif;--heading:YekanBakh,sans
 @media(min-width:1001px){.project-ai .project-visual{height:390px;margin-top:20px}.new-work h2{margin-bottom:34px}}
 @media(min-width:1251px){.new-hero{padding-top:60px;padding-bottom:54px}.new-hero>p{margin-top:28px;margin-bottom:24px;font-size:20px}.new-work{padding-top:70px}.career-intro{max-width:940px;letter-spacing:.6px}.timeline-card>p{letter-spacing:.6px;font-size:14px;line-height:1.45}.passion-notes{gap:10px}.passion-note{padding:12px}.passion-note p{font-size:14px;line-height:1.35}}
 @media(max-width:700px){.new-passion{padding-block:70px}.passion-note h3{font-size:15px}.project-map .project-visual{aspect-ratio:1.5}}
+/* Compact mobile heading rhythm and remove letterboxing above Rahro's artwork. */
+@media(max-width:700px){
+  .new-work h2{line-height:1.25}
+  html[lang=fa] .new-work h2{line-height:1.45}
+  .project-book .project-visual{display:block;flex:none;height:auto;aspect-ratio:auto;margin-top:12px}
+  .project-book .project-visual img{width:100%;height:auto;max-height:none;object-fit:contain;object-position:center top}
+}
 .new-hero h1{position:relative}.hero-typing-caret{position:absolute;left:0;top:0;width:2px;background:#f8f7fb;pointer-events:none;animation:hero-caret-blink .8s steps(1,end) infinite;-webkit-text-stroke:0}
 @keyframes hero-caret-blink{0%,60%,100%{opacity:1}61%,99%{opacity:0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.button:hover,.passion-note:hover{transform:none}.hero-typing-caret{display:none}}
