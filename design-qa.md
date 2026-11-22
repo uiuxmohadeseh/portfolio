@@ -64,3 +64,9 @@ No actionable P0/P1/P2 visual defects remain in the checked views.
 - Implemented reduced-motion support, including finishing active entrances when the preference changes. Smaller screens use shorter travel distances and no contact-card stagger.
 - Verified actual `entering` and `visible` states and intermediate computed opacity/translation in the in-app browser for English project cards, timeline cards, and Persian project cards. No horizontal overflow or browser console errors in those checks. Reduced-motion preference handling was inspected in source; OS preference was not changed for testing.
 - JavaScript syntax and Git whitespace checks passed. No publication.
+
+### Softer motion and individual career scrolling
+
+- Reduced entrance travel and extended general entrance durations to 820–980 ms with a gentler easing curve.
+- Career cards now follow individual scroll progress instead of IntersectionObserver timing. Each starts at 82% of the viewport and completes within a travel range shorter than the spacing to the next card. Frame-rate-independent smoothing softens wheel and touch input. Completed cards remain visible when scrolling back.
+- Verified using normal Down-key scrolling in the in-app browser: first career card reached `visible` at opacity 1.00 while the second was `entering` at 0.02 and the third remained `waiting` at 0.00. No scroll interception or automatic advancement. Keyboard focus and reduced-motion handling still reveal the content immediately.

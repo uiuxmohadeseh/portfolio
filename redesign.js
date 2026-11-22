@@ -77,7 +77,6 @@
     register('.new-work>h2,.new-about>h2,.new-contact>h2', 'heading', 60);
     register('.career-intro,.new-contact>p:not(.new-status)', 'heading', 110);
     register('.featured-project', 'project');
-    register('.timeline-card', 'timeline');
     register('.passion-copy', 'heading');
     register('.passion-notes', 'notes', 100);
     register('.new-quote', 'statement');
@@ -92,18 +91,13 @@
         // Content is visible by default, including when JS or motion support is unavailable.
         if (reducedMotion.matches || element.contains(document.activeElement)) continue;
         const kind = element.dataset.scrollReveal;
-        const box = element.getBoundingClientRect();
-        let x = 0;
-        let y = mobileMotion.matches ? 20 : 32;
+        const x = 0;
+        let y = mobileMotion.matches ? 14 : 22;
         let delay = parseInt(element.style.getPropertyValue('--reveal-delay')) || 0;
-        if (kind === 'intro' || kind === 'heading') y = 16;
+        if (kind === 'intro' || kind === 'heading') y = 12;
         if (kind === 'project') {
-          y = mobileMotion.matches ? 24 : 38;
+          y = mobileMotion.matches ? 18 : 26;
           if (!mobileMotion.matches && element.closest('.featured-column')?.matches(':nth-child(2)')) delay = 100;
-        }
-        if (kind === 'timeline' && !mobileMotion.matches) {
-          x = box.left + box.width / 2 < innerWidth / 2 ? -24 : 24;
-          y = 16;
         }
         if (mobileMotion.matches && kind === 'contact') delay = 0;
         element.dataset.scrollState = 'entering';
@@ -111,8 +105,8 @@
           {opacity:0,translate:`${x}px ${y}px`},
           {opacity:1,translate:'0px 0px'}
         ], {
-          duration:kind === 'project' || kind === 'timeline' ? 680 : 560,
-          delay,easing:'cubic-bezier(.2,.7,.2,1)',fill:'backwards'
+          duration:kind === 'project' ? 980 : 820,
+          delay,easing:'cubic-bezier(.22,.61,.36,1)',fill:'backwards'
         });
         active.set(element, animation);
         animation.onfinish = animation.oncancel = () => {
@@ -122,6 +116,60 @@
       }
     }, {rootMargin:'0px 0px -24px 0px',threshold:0.06});
     targets.forEach(element => observer.observe(element));
+
+    // Each career card follows its own scroll position, rather than a timed batch.
+    const timeline = [...document.querySelectorAll('.timeline-card')].map(element => {
+      element.dataset.scrollReveal = 'timeline';
+      element.dataset.scrollState = 'waiting';
+      return {element,item:element.closest('.timeline-item'),progress:0,finished:false};
+    });
+    let timelineFrame = 0;
+    let previousFrameTime = 0;
+    function showTimelineCard(card) {
+      card.finished = true;
+      card.progress = 1;
+      card.element.dataset.scrollState = 'visible';
+      card.element.style.removeProperty('opacity');
+      card.element.style.removeProperty('translate');
+      card.element.style.removeProperty('will-change');
+    }
+    function updateTimeline(time) {
+      timelineFrame = 0;
+      const elapsed = previousFrameTime ? Math.min(time - previousFrameTime, 50) : 16;
+      previousFrameTime = time;
+      const smoothing = 1 - Math.exp(-elapsed / 85);
+      let unsettled = false;
+      // Read the untransformed timeline items before writing animated card styles.
+      const boxes = timeline.map(card => card.item.getBoundingClientRect());
+      timeline.forEach((card,index) => {
+        if (card.finished) return;
+        if (reducedMotion.matches) {showTimelineCard(card);return;}
+        const box = boxes[index];
+        // Finish one entrance before the next card reaches its own trigger.
+        const travel = Math.min(150,box.height * .75,innerHeight * .22);
+        const target = Math.max(0,Math.min(1,(innerHeight * .82 - box.top) / Math.max(1,travel)));
+        if (target === 1 && box.bottom < 0) {showTimelineCard(card);return;}
+        card.progress += (target - card.progress) * smoothing;
+        if (Math.abs(target - card.progress) < .002) card.progress = target;
+        else unsettled = true;
+        if (card.progress === 1) {showTimelineCard(card);return;}
+        const eased = card.progress * card.progress * (3 - 2 * card.progress);
+        const side = box.left + box.width / 2 < innerWidth / 2 ? -1 : 1;
+        const x = mobileMotion.matches ? 0 : side * 12 * (1 - eased);
+        card.element.style.opacity = String(eased);
+        card.element.style.translate = `${x}px ${16 * (1 - eased)}px`;
+        card.element.style.willChange = eased > 0 ? 'opacity, translate' : 'auto';
+        card.element.dataset.scrollState = eased > 0 ? 'entering' : 'waiting';
+      });
+      if (unsettled) timelineFrame = requestAnimationFrame(updateTimeline);
+      else previousFrameTime = 0;
+    }
+    function scheduleTimeline() {
+      if (!timelineFrame) timelineFrame = requestAnimationFrame(updateTimeline);
+    }
+    window.addEventListener('scroll',scheduleTimeline,{passive:true});
+    window.addEventListener('resize',scheduleTimeline,{passive:true});
+    scheduleTimeline();
     // Keyboard navigation never has to wait for an entrance animation.
     document.addEventListener('focusin', event => {
       const element = event.target.closest('[data-scroll-reveal]');
@@ -129,9 +177,14 @@
       observer.unobserve(element);
       element.dataset.scrollState = 'visible';
       active.get(element)?.finish();
+      const careerCard = timeline.find(card => card.element === element);
+      if (careerCard) showTimelineCard(careerCard);
     });
     reducedMotion.addEventListener('change', event => {
-      if (event.matches) active.forEach(animation => animation.finish());
+      if (event.matches) {
+        active.forEach(animation => animation.finish());
+        timeline.forEach(showTimelineCard);
+      }
     });
   }
   initializeScrollMotion();
