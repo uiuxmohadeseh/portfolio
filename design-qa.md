@@ -77,3 +77,10 @@ No actionable P0/P1/P2 visual defects remain in the checked views.
 - Added a one-time, line-by-line hero typing sequence with a temporary blinking caret. Full text remains in the DOM with an accessible heading label. Font-aware grapheme boundaries control clipping, preserving Persian letter joining and the original heading dimensions, solid/outline styles, and line offsets.
 - Reduced-motion preference skips typing; a preference change or resize safely completes the title. Case-study content and UI demonstration loops are unchanged.
 - In-app browser verified English and Persian typing start/completion (`typedLines=2`, clip paths removed), no overflow, and no console errors. Persian career proof showed first card opacity 0.383818 while the next two waited at zero, with computed translation `none` for all three.
+
+### Restore visible travel alongside fading
+
+- User clarified that the cards should visibly move as well as fade. Featured projects now rise 28px, contacts 18px, and the notes group 16px, with the existing slow fade timing retained.
+- Career progress now combines opacity with a 22px rise and a subtle 10px physical-side drift on larger screens. Individual scroll progress and hero typing remain unchanged.
+- Career entrances respond again when scrolling back and forward, instead of becoming permanently static after their first reveal. Project entrances rearm after leaving below the viewport. Reduced-motion and keyboard-focus reveals remain immediate.
+- Browser checks confirmed waiting cards at opacity 0 and translation 22px, followed by visible cards with translation cleared. No horizontal overflow or browser console errors. Syntax and whitespace checks passed.

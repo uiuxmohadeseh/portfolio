@@ -83,9 +83,12 @@
 
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
         const element = entry.target;
-        observer.unobserve(element);
+        if (!entry.isIntersecting) {
+          if (entry.boundingClientRect.top >= innerHeight && !active.has(element)) element.dataset.scrollState = 'waiting';
+          continue;
+        }
+        if (element.dataset.scrollState === 'visible' || active.has(element)) continue;
         element.dataset.scrollState = 'visible';
         // Content is visible by default, including when JS or motion support is unavailable.
         if (reducedMotion.matches || element.contains(document.activeElement)) continue;
@@ -95,17 +98,18 @@
           if (!mobileMotion.matches && element.closest('.featured-column')?.matches(':nth-child(2)')) delay = 100;
         }
         if (mobileMotion.matches && kind === 'contact') delay = 0;
+        const rise = kind === 'project' ? 28 : kind === 'contact' ? 18 : kind === 'notes' ? 16 : 0;
         element.dataset.scrollState = 'entering';
         const animation = element.animate([
-          {opacity:0},
-          {opacity:1}
+          {opacity:0,translate:`0px ${rise}px`},
+          {opacity:1,translate:'0px 0px'}
         ], {
           duration:kind === 'project' ? 1250 : 1100,
           delay,easing:'cubic-bezier(.25,.1,.25,1)',fill:'backwards'
         });
         active.set(element, animation);
         animation.onfinish = animation.oncancel = () => {
-          element.dataset.scrollState = 'visible';
+          element.dataset.scrollState = element.getBoundingClientRect().top >= innerHeight ? 'waiting' : 'visible';
           active.delete(element);
         };
       }
@@ -120,8 +124,8 @@
     });
     let timelineFrame = 0;
     let previousFrameTime = 0;
-    function showTimelineCard(card) {
-      card.finished = true;
+    function showTimelineCard(card,permanent = false) {
+      card.finished = permanent;
       card.progress = 1;
       card.element.dataset.scrollState = 'visible';
       card.element.style.removeProperty('opacity');
@@ -138,7 +142,7 @@
       const boxes = timeline.map(card => card.item.getBoundingClientRect());
       timeline.forEach((card,index) => {
         if (card.finished) return;
-        if (reducedMotion.matches) {showTimelineCard(card);return;}
+        if (reducedMotion.matches) {showTimelineCard(card,true);return;}
         const box = boxes[index];
         // Finish one entrance before the next card reaches its own trigger.
         const travel = Math.min(180,box.height * .9,innerHeight * .26);
@@ -150,7 +154,10 @@
         if (card.progress === 1) {showTimelineCard(card);return;}
         const eased = card.progress * card.progress * (3 - 2 * card.progress);
         card.element.style.opacity = String(eased);
-        card.element.style.willChange = eased > 0 ? 'opacity' : 'auto';
+        const side = box.left + box.width / 2 < innerWidth / 2 ? -1 : 1;
+        const drift = mobileMotion.matches ? 0 : side * 10 * (1 - eased);
+        card.element.style.translate = `${drift}px ${22 * (1 - eased)}px`;
+        card.element.style.willChange = eased > 0 ? 'opacity, translate' : 'auto';
         card.element.dataset.scrollState = eased > 0 ? 'entering' : 'waiting';
       });
       if (unsettled) timelineFrame = requestAnimationFrame(updateTimeline);
@@ -170,12 +177,12 @@
       element.dataset.scrollState = 'visible';
       active.get(element)?.finish();
       const careerCard = timeline.find(card => card.element === element);
-      if (careerCard) showTimelineCard(careerCard);
+      if (careerCard) showTimelineCard(careerCard,true);
     });
     reducedMotion.addEventListener('change', event => {
       if (event.matches) {
         active.forEach(animation => animation.finish());
-        timeline.forEach(showTimelineCard);
+        timeline.forEach(card=>showTimelineCard(card,true));
       }
     });
   }
