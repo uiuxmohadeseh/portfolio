@@ -116,69 +116,40 @@
     }, {rootMargin:'0px 0px -24px 0px',threshold:0.06});
     targets.forEach(element => observer.observe(element));
 
-    // Scroll reveals each card in order, with a short reading pause between entries.
-    const careerPause = 800;
+    // Career progress is a direct function of scroll position, not elapsed time.
     const timeline = [...document.querySelectorAll('.timeline-card')].map(element => {
       element.dataset.scrollReveal = 'timeline';
       element.dataset.scrollState = 'waiting';
-      return {element,item:element.closest('.timeline-item'),progress:0,finished:false,released:false,completedAt:null};
+      return {element,item:element.closest('.timeline-item'),finished:false};
     });
     let timelineFrame = 0;
-    let previousFrameTime = 0;
-    function showTimelineCard(card,permanent = false,time = performance.now()) {
+    function showTimelineCard(card,permanent = false) {
       card.finished = permanent;
-      card.progress = 1;
-      card.released = true;
-      if (card.completedAt === null) card.completedAt = time;
       card.element.dataset.scrollState = 'visible';
       card.element.style.removeProperty('opacity');
       card.element.style.removeProperty('translate');
       card.element.style.removeProperty('will-change');
     }
-    function updateTimeline(time) {
+    function updateTimeline() {
       timelineFrame = 0;
-      const elapsed = previousFrameTime ? Math.min(time - previousFrameTime, 50) : 16;
-      previousFrameTime = time;
-      const smoothing = 1 - Math.exp(-elapsed / 140);
-      let unsettled = false;
       // Read the untransformed timeline items before writing animated card styles.
       const boxes = timeline.map(card => card.item.getBoundingClientRect());
       timeline.forEach((card,index) => {
         if (card.finished) return;
         if (reducedMotion.matches) {showTimelineCard(card,true);return;}
         const box = boxes[index];
-        // Finish one entrance before the next card reaches its own trigger.
-        const travel = Math.min(180,box.height * .9,innerHeight * .26);
-        const scrollTarget = Math.max(0,Math.min(1,(innerHeight * .88 - box.top) / Math.max(1,travel)));
-        if (scrollTarget === 1 && box.bottom < 0) {showTimelineCard(card,false,time);return;}
-        let target = scrollTarget;
-        let queued = false;
-        if (target > 0 && !card.released) {
-          const previous = timeline[index-1];
-          if (previous && !previous.finished && (previous.progress < 1 || previous.completedAt === null || time-previous.completedAt < careerPause)) {
-            target = 0;
-            queued = true;
-            unsettled = true;
-          } else card.released = true;
-        }
-        card.progress += (target - card.progress) * smoothing;
-        if (Math.abs(target - card.progress) < .002) card.progress = target;
-        else unsettled = true;
-        if (card.progress === 1) {showTimelineCard(card,false,time);return;}
-        if (scrollTarget === 0 && card.progress === 0) {
-          card.released = false;
-          card.completedAt = null;
-        }
-        const eased = card.progress * card.progress * (3 - 2 * card.progress);
+        // A spatial gap between reveal ranges replaces a fixed timed pause.
+        const travel = Math.min(180,box.height * .75,innerHeight * .26);
+        const progress = Math.max(0,Math.min(1,(innerHeight * .88 - box.top) / Math.max(1,travel)));
+        if (progress === 1) {showTimelineCard(card);return;}
+        const eased = progress * progress * (3 - 2 * progress);
         card.element.style.opacity = String(eased);
         const side = box.left + box.width / 2 < innerWidth / 2 ? -1 : 1;
         const drift = mobileMotion.matches ? 0 : side * 10 * (1 - eased);
         card.element.style.translate = `${drift}px ${22 * (1 - eased)}px`;
         card.element.style.willChange = eased > 0 ? 'opacity, translate' : 'auto';
-        card.element.dataset.scrollState = queued ? 'queued' : eased > 0 ? 'entering' : 'waiting';
+        card.element.dataset.scrollState = eased > 0 ? 'entering' : 'waiting';
       });
-      if (unsettled) timelineFrame = requestAnimationFrame(updateTimeline);
-      else previousFrameTime = 0;
     }
     function scheduleTimeline() {
       if (!timelineFrame) timelineFrame = requestAnimationFrame(updateTimeline);

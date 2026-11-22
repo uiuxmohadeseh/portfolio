@@ -90,3 +90,10 @@ No actionable P0/P1/P2 visual defects remain in the checked views.
 - Added an 800ms reading pause after the previous card completes its entrance. The next card waits in a `queued` state even when its scroll position would otherwise reveal it immediately.
 - Offscreen cards passed by a large navigation jump do not accumulate a long queue. Reverse scrolling resets the reveal cycle; keyboard focus and reduced-motion bypass the pause.
 - Browser proof: first card was entering at opacity 0.994111 while the second remained queued at opacity 0 and the next two remained waiting. No horizontal overflow. Syntax and whitespace checks passed.
+
+### Direct scroll synchronization
+
+- Latest user preference replaces the fixed 800ms pause with scroll-distance spacing. Career opacity and travel now derive directly from each untransformed item's viewport position, with no queue, timer, or temporal interpolation.
+- A reveal range shorter than the distance between career entries preserves the one-by-one rhythm. Faster scrolling advances the animation faster; stopping scrolling leaves the card at that exact position. Reverse scrolling retraces the same fade and movement.
+- Updates are batched into one animation frame per scroll/resize event, with no continuing animation loop. Reduced-motion and keyboard focus still bypass the effect.
+- Browser checks showed waiting cards at 22px travel progressing to visible cards with translation cleared after scrolling past them; no queue, viewport overflow, or console errors. Syntax and whitespace checks passed.
