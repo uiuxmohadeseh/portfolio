@@ -202,6 +202,49 @@
     reducedMotion.addEventListener('change',onMotionChange);
   }
   initializeHeroTyping();
+  document.querySelectorAll('.estate-stack').forEach(async stack => {
+    const cards = [...stack.querySelectorAll('img')];
+    if (cards.length !== 3 || !Element.prototype.animate) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const slots = ['translate(0,0) scale(1)','translate(0,-15%) scale(.93)','translate(0,-30%) scale(.865)'];
+    let visible = false;
+    new IntersectionObserver(entries => {visible = entries[0].isIntersecting;}).observe(stack);
+    const depth = [
+      {opacity:1,boxShadow:'0 4px 12px #05031945'},
+      {opacity:.72,boxShadow:'0 3px 8px #05031930'},
+      {opacity:.45,boxShadow:'0 2px 5px #05031920'}
+    ];
+    const settle = () => cards.forEach((card,index) => {
+      card.style.transform = slots[index];
+      card.style.zIndex = String(3-index);
+      Object.assign(card.style,depth[index]);
+    });
+    async function move(card,from,to,fromDepth=0,toDepth=0) {
+      const animation = card.animate([{transform:from,...depth[fromDepth]},{transform:to,...depth[toDepth]}],
+        {duration:850,easing:'cubic-bezier(.25,.1,.25,1)',fill:'forwards'});
+      await animation.finished;
+      card.style.transform = to;
+      Object.assign(card.style,depth[toDepth]);
+      animation.cancel();
+    }
+    await Promise.all(cards.map(card => card.decode().catch(() => {})));
+    settle();
+    while (stack.isConnected) {
+      await new Promise(resolve => setTimeout(resolve,2200));
+      if (!visible || document.hidden || reduced.matches) continue;
+      const [front,middle,back] = cards;
+      // Keep depth fixed until the outgoing screen is completely outside the clip.
+      await move(front,slots[0],'translate(0,115%) scale(1)');
+      front.style.zIndex = '0';
+      await Promise.all([
+        move(middle,slots[1],slots[0],1,0),
+        move(back,slots[2],slots[1],2,1),
+        move(front,'translate(0,115%) scale(1)',slots[2],0,2)
+      ]);
+      cards.push(cards.shift());
+      settle();
+    }
+  });
   const status = document.querySelector('#copy-status');
   document.querySelectorAll('.new-copy').forEach(button => {
     let timer;

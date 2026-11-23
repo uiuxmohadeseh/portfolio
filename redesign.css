@@ -63,5 +63,8 @@ html[lang=fa]{direction:rtl;--body:YekanBakh,sans-serif;--heading:YekanBakh,sans
   html[lang=fa] .redesign-home .new-hero h1,html[lang=fa] .redesign-home .new-hero h1>.outline-title{font-size:clamp(52px,14vw,68px);line-height:1.15;letter-spacing:0}
 }
 .new-hero h1{position:relative}.hero-typing-caret{position:absolute;left:0;top:0;width:2px;background:#f8f7fb;pointer-events:none;animation:hero-caret-blink .8s steps(1,end) infinite;-webkit-text-stroke:0}
+.project-estate .estate-motion{position:relative;overflow:hidden}
+.estate-stack{position:relative;width:100%;max-width:450px;aspect-ratio:1.52;direction:ltr;isolation:isolate;overflow:hidden}
+.project-estate .estate-stack img{position:absolute;left:3%;bottom:1%;width:94%;height:auto;aspect-ratio:1.75;object-fit:cover;object-position:top;border:1px solid #ffffff80;border-radius:6px;background:#fff;box-shadow:0 4px 12px #05031945;transform-origin:center bottom}.estate-stack img:nth-child(1){transform:translate(0,0) scale(1);z-index:3}.estate-stack img:nth-child(2){transform:translate(0,-15%) scale(.93);z-index:2;opacity:.72;box-shadow:0 3px 8px #05031930}.estate-stack img:nth-child(3){transform:translate(0,-30%) scale(.865);z-index:1;opacity:.45;box-shadow:0 2px 5px #05031920}
 @keyframes hero-caret-blink{0%,60%,100%{opacity:1}61%,99%{opacity:0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.button:hover,.passion-note:hover{transform:none}.hero-typing-caret{display:none}}
